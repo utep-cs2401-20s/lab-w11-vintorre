@@ -2,32 +2,34 @@ public class newSorting {
 
     public void newSorting(int[] A, int size){
 
-        if(A.length < 1) //adding this just in case someone passes an empty array
+        if(A.length < 1) { //adding this just in case someone passes an empty array
             System.out.println("Array empty");
+        }
 
         if(A.length <= size){
             quickSort(A, 0, A.length-1);
         }
 
-        int mid = (A.length/2);
+        else {
+            int mid = (A.length / 2);
 
-        int[] LH = new int[mid];
-        int[] RH = new int[A.length - mid];
+            int[] LH = new int[mid];
+            int[] RH = new int[A.length - mid];
 
-        for(int i = 0; i < mid; i++){
-            LH[i] = A[i];
+            for (int i = 0; i < mid; i++) {
+                LH[i] = A[i];
+            }
+            int j = 0;
+            for (int i = mid; i < A.length; i++) {
+                RH[j] = A[mid];
+                j++;
+            }
+
+            newSorting(LH, size);
+            newSorting(RH, size);
+
+            mergeSortedHalves(A, LH, RH);
         }
-        int j = 0;
-        for(int i = mid; i < A.length; i++){
-            RH[j] = A[mid];
-            j++;
-        }
-
-        newSorting(LH, size);
-        newSorting(RH, size);
-
-        mergeSortedHalves(A, LH, RH);
-
 
     }
 
