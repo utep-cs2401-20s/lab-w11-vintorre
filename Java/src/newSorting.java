@@ -6,29 +6,29 @@ public class newSorting {
             System.out.println("Array empty");
         }
 
-        if(A.length <= size){
+        if(A.length <= size){ //if array is less than or equal to size you call quicksort
             quickSort(A, 0, A.length-1);
         }
 
-        else {
+        else { //split array in two and call merge
             int mid = (A.length / 2);
 
-            int[] LH = new int[mid];
-            int[] RH = new int[A.length - mid];
+            int[] LH = new int[mid];//left half array
+            int[] RH = new int[A.length - mid];//right half array
 
-            for (int i = 0; i < mid; i++) {
+            for (int i = 0; i < mid; i++) {//to populate left half
                 LH[i] = A[i];
             }
             int j = 0;
-            for (int i = mid; i < A.length; i++) {
+            for (int i = mid; i < A.length; i++) { //to populate right half
                 RH[j] = A[mid];
                 j++;
             }
 
-            newSorting(LH, size);
+            newSorting(LH, size);//redo with LH/RH
             newSorting(RH, size);
 
-            mergeSortedHalves(A, LH, RH);
+            mergeSortedHalves(A, LH, RH);//merge LH RH
         }
 
     }
@@ -67,7 +67,7 @@ public class newSorting {
             A[start] = A[more];
             A[more] = temp;
 
-            return start; //returning new pivot
+            return start+1; //returning new pivot
         }
 
         public void mergeSortedHalves(int[] a, int[] LH, int[] RH){
